@@ -21,7 +21,7 @@ export let sequelize: Sequelize;
 async function setupDb() {
   sequelize = new Sequelize({
     dialect: "sqlite",
-    storage: ":memory:",
+    storage: "./db.sqlite",
     logging: false,
   });
   await sequelize.addModels([
@@ -32,5 +32,6 @@ async function setupDb() {
     InvoiceItemsModel,
   ]);
   await sequelize.sync();
+  console.log("Models added, sequelize is synced");
 }
 setupDb();
