@@ -24,19 +24,6 @@ describe("E2E test for checkout", () => {
   });
 
   it("should make checkout", async () => {
-    const product1 = await request(app).post("/product").send({
-      name: "Product 1",
-      description: "Description 1",
-      purchasePrice: 70,
-      stock: 30,
-    });
-    const product2 = await request(app).post("/product").send({
-      name: "Product 2",
-      description: "Description 2",
-      purchasePrice: 50,
-      stock: 50,
-    });
-
     const client = await request(app).post("/client").send({
       id: "1",
       name: "Client 1",
@@ -48,6 +35,19 @@ describe("E2E test for checkout", () => {
       city: "Dinossauro",
       state: "Verde",
       zipCode: "123",
+    });
+
+    const product1 = await request(app).post("/product").send({
+      name: "Product 1",
+      description: "Description 1",
+      purchasePrice: 70,
+      stock: 30,
+    });
+    const product2 = await request(app).post("/product").send({
+      name: "Product 2",
+      description: "Description 2",
+      purchasePrice: 50,
+      stock: 50,
     });
 
     await ProductCatalogModel.create({

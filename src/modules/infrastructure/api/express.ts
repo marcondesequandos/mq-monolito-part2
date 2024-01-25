@@ -14,7 +14,7 @@ import ProductCatalogModel from "../../store-catalog/repository/product.model";
 export const app: Express = express();
 app.use(express.json());
 app.use("/product", productRoute);
-app.use("/productCatalog", productCatalogRoute);
+// app.use("/productCatalog", productCatalogRoute);
 app.use("/client", clientRoute);
 app.use("/invoice", invoiceRoute);
 app.use("/checkout", checkoutRoute);
@@ -24,12 +24,12 @@ export let sequelize: Sequelize;
 async function setupDb() {
   sequelize = new Sequelize({
     dialect: "sqlite",
-    storage: "./db.sqlite",
+    storage: ":memory:",
     logging: false,
   });
   await sequelize.addModels([
     ProductModel,
-    ProductCatalogModel,
+    // ProductCatalogModel,
     ClientModel,
     TransactionModel,
     InvoiceModel,
