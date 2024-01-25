@@ -24,6 +24,18 @@ export const up: MigrationFn<Sequelize> = async ({ context: sequelize }) => {
       type: DataTypes.NUMBER,
       allowNull: true,
     },
+    stock: {
+      type: DataTypes.NUMBER,
+      allowNull: true,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   });
 };
 

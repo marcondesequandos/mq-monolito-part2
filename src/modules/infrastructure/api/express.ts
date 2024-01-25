@@ -9,9 +9,12 @@ import { ClientModel } from "../../client-adm/repository/client.model";
 import { InvoiceModel } from "../../invoice/repository/invoice.model";
 import TransactionModel from "../../payment/repository/transaction.model";
 import { InvoiceItemsModel } from "../../invoice/repository/invoice-item.model";
+import { productCatalogRoute } from "./routes/product-catalog.route";
+import ProductCatalogModel from "../../store-catalog/repository/product.model";
 export const app: Express = express();
 app.use(express.json());
 app.use("/product", productRoute);
+app.use("/productCatalog", productCatalogRoute);
 app.use("/client", clientRoute);
 app.use("/invoice", invoiceRoute);
 app.use("/checkout", checkoutRoute);
@@ -26,12 +29,12 @@ async function setupDb() {
   });
   await sequelize.addModels([
     ProductModel,
+    ProductCatalogModel,
     ClientModel,
     TransactionModel,
     InvoiceModel,
     InvoiceItemsModel,
   ]);
   await sequelize.sync();
-  console.log("Models added, sequelize is synced");
 }
 setupDb();

@@ -1,5 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
-import ProductModel from "./product.model";
+import ProductCatalogModel from "./product.model";
 import ProductRepository from "./product.repository";
 import Product from "../domain/product.entity";
 import Id from "../../@shared/domain/value-object/id.value-object";
@@ -15,7 +15,7 @@ describe("Product repository test", () => {
       sync: { force: true },
     });
 
-    await sequelize.addModels([ProductModel]);
+    await sequelize.addModels([ProductCatalogModel]);
     await sequelize.sync();
   });
 
@@ -34,7 +34,7 @@ describe("Product repository test", () => {
     const productRepository = new ProductRepository();
     await productRepository.add(product);
 
-    const productDb = await ProductModel.findOne({
+    const productDb = await ProductCatalogModel.findOne({
       where: { id: productProps.id.id },
     });
 
@@ -45,14 +45,14 @@ describe("Product repository test", () => {
   });
 
   it("should find all products", async () => {
-    await ProductModel.create({
+    await ProductCatalogModel.create({
       id: "1",
       name: "Product 1",
       description: "Description 1",
       salesPrice: 100,
     });
 
-    await ProductModel.create({
+    await ProductCatalogModel.create({
       id: "2",
       name: "Product 2",
       description: "Description 2",
@@ -74,7 +74,7 @@ describe("Product repository test", () => {
   });
 
   it("should find a product", async () => {
-    await ProductModel.create({
+    await ProductCatalogModel.create({
       id: "1",
       name: "Product 1",
       description: "Description 1",
